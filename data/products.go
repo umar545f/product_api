@@ -38,6 +38,10 @@ type Product struct {
 	// required: true
 	// pattern: [a-z]+-[a-z]+-[a-z]+
 	SKU string `json:"sku" validate:"required,sku"`
+
+	//The image of this product
+	// required: false
+	Image string `json:"image"`
 }
 
 func MigrateProduct(r *gorm.DB) error {
@@ -113,4 +117,32 @@ func UpdateProducts(id int, newProd *Product, db *gorm.DB) error {
 
 	return nil
 
+}
+
+func UploadFile(db *gorm.DB, imagePath string, id string) error {
+	product := Product{}
+	err := db.First(&product, id).Error
+	if err != nil {
+		return err
+	}
+	product.Image = imagePath
+	err = db.Save(&product).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
+func DownloadFile(db *gorm.DB, id string) (string, error) {
+	product := Product{}
+	err := db.First(&product, id).Error
+	if err != nil {
+		return "", err
+	}
+
+	path := product.Image
+
+	return path, nil
 }

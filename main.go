@@ -62,16 +62,28 @@ func main() {
 	/*Using mux of gureilla framework which
 	removes the need of ServeHTTP*/
 	sm := mux.NewRouter()
+
+	//router for getting all products
 	getRouter := sm.Methods(http.MethodGet).Subrouter()
 	getRouter.HandleFunc("/products", productHandler.GetProducts)
 
+	//router for adding a product
 	putRouter := sm.Methods(http.MethodPut).Subrouter()
 	putRouter.HandleFunc("/products/{id:[0-9]+}", productHandler.UpdateProducts)
 	putRouter.Use(productHandler.MiddlewareValidateProduct)
 
+	//router for updating a product
 	postRouter := sm.Methods(http.MethodPost).Subrouter()
 	postRouter.HandleFunc("/products", productHandler.AddProducts)
 	postRouter.Use(productHandler.MiddlewareValidateProduct)
+
+	//router for add an image to a product
+	imagePutRouter := sm.Methods(http.MethodPut).Subrouter()
+	imagePutRouter.HandleFunc("/products/{id:[0-9]+}/image", productHandler.UploadFile)
+
+	//router for add an image to a product
+	imageGetRouter := sm.Methods(http.MethodGet).Subrouter()
+	imageGetRouter.HandleFunc("/products/{id:[0-9]+}/image", productHandler.DownloadFile)
 
 	//Set up swagger
 	ops := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
