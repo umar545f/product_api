@@ -77,11 +77,11 @@ func main() {
 	postRouter.HandleFunc("/products", productHandler.AddProducts)
 	postRouter.Use(productHandler.MiddlewareValidateProduct)
 
-	//router for add an image to a product
+	//router for adding an image to a product
 	imagePutRouter := sm.Methods(http.MethodPut).Subrouter()
 	imagePutRouter.HandleFunc("/products/{id:[0-9]+}/image", productHandler.UploadFile)
 
-	//router for add an image to a product
+	//router for adding an image to a product
 	imageGetRouter := sm.Methods(http.MethodGet).Subrouter()
 	imageGetRouter.HandleFunc("/products/{id:[0-9]+}/image", productHandler.DownloadFile)
 
