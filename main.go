@@ -2,14 +2,15 @@ package main
 
 import (
 	"context"
-	"go-microservices/product-api/handler"
-	"go-microservices/product-api/migrate"
-	"go-microservices/product-api/storage"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"go-microservices/handler"
+	"go-microservices/migrate"
+	"go-microservices/storage"
 
 	"github.com/go-openapi/runtime/middleware"
 	gohandlers "github.com/gorilla/handlers"

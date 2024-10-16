@@ -2,7 +2,8 @@ package migrate
 
 import (
 	"fmt"
-	"go-microservices/product-api/data"
+
+	"go-microservices/data"
 
 	"gorm.io/gorm"
 )

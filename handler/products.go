@@ -13,9 +13,10 @@ package handler
 
 import (
 	"context"
-	"go-microservices/product-api/data"
 	"log"
 	"net/http"
+
+	"go-microservices/data"
 
 	"gorm.io/gorm"
 )

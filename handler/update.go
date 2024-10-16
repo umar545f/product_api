@@ -1,9 +1,10 @@
 package handler
 
 import (
-	"go-microservices/product-api/data"
 	"net/http"
 	"strconv"
+
+	"go-microservices/data"
 
 	"github.com/gorilla/mux"
 	"gorm.io/gorm"

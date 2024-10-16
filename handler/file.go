@@ -2,11 +2,12 @@ package handler
 
 import (
 	"fmt"
-	"go-microservices/product-api/data"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"go-microservices/data"
 
 	"github.com/gorilla/mux"
 	"gorm.io/gorm"

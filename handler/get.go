@@ -2,8 +2,9 @@ package handler
 
 import (
 	"encoding/json"
-	"go-microservices/product-api/data"
 	"net/http"
+
+	"go-microservices/data"
 )
 
 // swagger:route GET /products products listProducts
